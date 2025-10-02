@@ -2,7 +2,16 @@
 
 Bureaucrat::Bureaucrat() : _name("Default name"), _grade(150) {}
 
-Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name), _grade(grade) {};
+Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name), _grade(grade) {
+	try {
+	    if (grade > 150)
+			throw Bureaucrat::GradeTooLowException();
+		else if (grade < 1)
+			throw Bureaucrat::GradeTooHighException();
+	} catch (std::exception & e) {
+		std::cout << "Caught out of range: " << e.what() << std::endl;
+	} 
+};
 
 Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name), _grade(other._grade) {};
 

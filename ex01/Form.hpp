@@ -1,9 +1,10 @@
 #ifndef FORM_HPP
 #define FORM_HPP
-#include "Bureaucrat.hpp"
+#include <exception>
 #include <string>
-#include <ostream>
+#include <iostream>
 
+class Bureaucrat;
 
 class Form {
 	private:
@@ -13,28 +14,35 @@ class Form {
 		const int _gradeExec;
 	public:
 		Form();
-		Form(const std::string& name, bool sign, const int gradeSign, const int gradeExec);
+		Form(const std::string& name, const int gradeSign, const int gradeExec);
 		Form(const Form& other);
 		Form& operator=(const Form& other);
 
 		class GradeTooHighException : public std::exception {
 			public:
 				const char* what() const throw() {
-					return ("Grade too high!");
+					return ("Grade is too high!");
 				}
 		};
 
 		class GradeTooLowException : public std::exception {
 			public:
 				const char* what() const throw() {
-					return ("Grade too low exception!");
+					return ("Grade is too low!");
+				}
+		};
+
+		class InvalidGradeException : public std::exception {
+			public :
+				virtual const char* what() const throw() {
+					return "Invalid parameters";
 				}
 		};
 
 		const std::string getName() const;
 		bool getSign();
-		const int getGradeSign() const;
-		const int getGradeExec() const;
+		int getGradeSign() const;
+		int getGradeExec() const;
 
 		void beSigned(const Bureaucrat& m);
 

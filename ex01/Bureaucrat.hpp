@@ -1,6 +1,7 @@
 #ifndef BUREAUCRAT_HPP
 #define BUREAUCRAT_HPP
 #include <string>
+#include "Form.hpp"
 #include <exception>
 #include <iostream>
 
@@ -33,6 +34,8 @@ class Bureaucrat {
 
 		void incrementGrade(int increment);
 		void decrementGrade(int decrement);
+
+		void signForm(Form& f);
 
 		~Bureaucrat();
 };

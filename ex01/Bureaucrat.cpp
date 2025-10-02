@@ -1,5 +1,6 @@
 #include "Bureaucrat.hpp"
 
+
 Bureaucrat::Bureaucrat() : _name("Default name"), _grade(150) {}
 
 Bureaucrat::Bureaucrat(const std::string& name, int grade) : _name(name), _grade(grade) {
@@ -62,4 +63,16 @@ void Bureaucrat::decrementGrade(int decrement) {
 	} catch (std::exception & e) {
 		std::cout << "Caught out of range: " << e.what() << std::endl;
 	} 
+}
+
+void Bureaucrat::signForm(Form& f) {
+	try {
+		f.beSigned(*this);
+		std::cout << _name << " signed " << f.getName() << std::endl;
+	} catch(std::exception& e) {
+		std::cout << _name << " couldn't sign " << f.getName() << " because " << e.what() << std::endl;
+	/*} catch(const InvalidGradeParameters& e) {
+		std::cout << _name << " couldn't sign " << f.getName() 
+	}*/
+	}
 }

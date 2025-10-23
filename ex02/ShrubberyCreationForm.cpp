@@ -22,7 +22,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 void ShrubberyCreationForm::execute(Bureaucrat const & executor) const{
 	AForm::performChecks(executor);
 
-	std::ofstream outfile (_target + "_shrubbery") ;
+	std::ofstream outfile ((_target + "_shrubbery").c_str()) ;
 	if (!outfile.is_open()) 
 		throw std::runtime_error("Could not open outfile!");
 	
